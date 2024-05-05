@@ -13,7 +13,8 @@ public class GettingInAndOutOfCars : MonoBehaviour
     private GameObject car = null;
 
     [SerializeField] private CarUserControl carController = null;
-
+    [SerializeField] CarController carEngine = null;
+    
     [Header("Input")] [SerializeField] private KeyCode enterExitKey = KeyCode.E;
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class GettingInAndOutOfCars : MonoBehaviour
     private void GetIntoCar()
     {
         carController.enabled = true;
+        mCamera.SetTarget(car.transform);
     }
 
     void GetOutOfCar()
@@ -37,5 +39,6 @@ public class GettingInAndOutOfCars : MonoBehaviour
         human.transform.position = car.transform.position + car.transform.TransformDirection(Vector3.left) * 2;
         mCamera.SetTarget(human.transform);
         carController.enabled = false;
+        carEngine.Move(0,0,1,1);
     }
 }
